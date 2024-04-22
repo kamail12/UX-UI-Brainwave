@@ -103,42 +103,50 @@ export default Header;
 
 /*
 
-* -> Kluczowe aspekty struktury i ich zastosowanie:
+Opis Struktury i Kluczowych Aspektów
+1. Kontener główny: Utrzymuje nagłówek na górze strony niezależnie od przewijania. Zmienia styl w zależności od tego, czy nawigacja jest otwarta (openNav), co wpływa na efekt rozmycia i tło.
 
-** -> Pozycjonowanie i widoczność: Użycie klas fixed, top-0, i z-50 zapewnia, że nagłówek jest zawsze widoczny na górze strony, niezależnie od przewijania. z-50 gwarantuje, że nagłówek będzie na wierzchu innych elementów.
+2. Kontener wewnętrzny: Organizuje elementy nagłówka, takie jak logo, nawigację, i przyciski. Dostosowuje marginesy i paddingi dla różnych rozmiarów ekranu.
 
-*** -> Responsywność: Klasa lg: oznacza, że określone style (np. lg:flex, lg:bg-transparent) są stosowane tylko na ekranach o szerokości większej niż zdefiniowany breakpoint dla lg. Dzięki temu nawigacja i inne elementy mogą się różnie zachowywać w zależności od rozmiaru ekranu.
+3. Link do sekcji "hero": Zapewnia szybki dostęp do głównej sekcji strony. Jest to element wizualny i nawigacyjny.
 
-**** -> Stylizacja i efekty: Klasy takie jak backdrop-blur-sm dodają efekty wizualne, np. rozmycie tła za elementem, co może poprawić estetykę i czytelność na złożonych tłach.
+4. Nawigacja: Zmienia swoją widoczność w zależności od stanu openNav i rozmiaru ekranu. Na mniejszych ekranach jest ukryta i pojawia się tylko po aktywacji przez użytkownika. Zawiera elementy nawigacyjne, które są dynamicznie tworzone z danych (navigation.map(...)).
 
-***** -> Układ i rozmiar: Użycie klas typu flex, items-center, justify-center pozwala na elastyczne i centrowane rozmieszczenie elementów wewnątrz kontenerów, co jest kluczowe dla nowoczesnego, responsywnego designu.
+5. Elementy nawigacyjne: Mapowane z obiektu navigation, reagują na kliknięcie, zmieniając stan nawigacji i umożliwiając przewijanie strony.
 
+6. HamburgerMenu: Komponent, który jest widoczny tylko na mniejszych ekranach. Jego stan zmienia się w zależności od openNav, co kontroluje widoczność nawigacji.
+
+7. Przyciski "New account" i "Sign in": "New account" jest widoczny tylko na większych ekranach. "Sign in" ma dwie formy: jako tekst na większych ekranach i jako przycisk na mniejszych, z możliwością otwarcia nawigacji.
+
+(Schemat Struktury Komponentu Header)
+-------->
 Header
 │
-├── Kontener główny (zawsze na górze, z efektem rozmycia)
+├── Kontener główny (zawsze na górze, z efektem rozmycia, reaguje na stan nawigacji)
 │   │
 │   ├── Kontener wewnętrzny (dla elementów nagłówka, z marginesami i paddingiem)
 │   │   │
 │   │   ├── Link do sekcji "hero" (z logo)
 │   │   │
-│   │   └── Nawigacja (ukryta na małych ekranach, widoczna na dużych)
-│   │       │
-│   │       └── Kontener nawigacji (dla elementów nawigacyjnych)
+│   │   ├── Nawigacja (dynamika widoczności zależna od stanu i rozmiaru ekranu)
+│   │   │   │
+│   │   │   ├── Elementy nawigacyjne (mapowane z danych, reagują na kliknięcie)
+│   │   │   │
+│   │   │   └── HamburgerMenu (widoczny na mniejszych ekranach, stan zależny od nawigacji)
+│   │   │
+│   │   ├── Link "New account" (widoczny tylko na większych ekranach)
+│   │   │
+│   │   └── Przyciski "Sign in" i menu (dynamika widoczności zależna od rozmiaru ekranu)
 │   │
-│   └── (Potencjalne inne elementy, np. przyciski logowania, jeśli by były)
+│   └── (Potencjalne inne elementy, np. dodatkowe przyciski, jeśli byłyby dodane)
 │
 └── (Potencjalne inne sekcje, np. dodatkowy pasek informacyjny, jeśli by był)
+<-------------
 
 Dlaczego taka struktura?
 
-1. Kontener główny: Utrzymuje nagłówek na górze strony niezależnie od przewijania. Efekt rozmycia (backdrop-blur-sm) poprawia czytelność i estetykę, szczególnie na złożonych tłach.
+**-> Responsywność i dostępność: Struktura zapewnia łatwą nawigację po stronie na różnych urządzeniach, dostosowując się do rozmiaru ekranu i preferencji użytkownika.
 
-2. Kontener wewnętrzny: Służy do organizacji elementów wewnątrz nagłówka. Umożliwia łatwe zarządzanie marginesami i paddingiem, co jest kluczowe dla responsywnego designu.
-
-3. Link do sekcji "hero": Bezpośredni dostęp do głównej sekcji strony z logo firmy/marki. Jest to często pierwszy element, na który użytkownik zwraca uwagę.
-
-4. Nawigacja: Ukryta na mniejszych ekranach, aby zaoszczędzić miejsce i uniknąć zatłoczenia. Staje się widoczna na większych ekranach, gdzie jest więcej miejsca na ekranie. To podejście jest częścią responsywnego designu, który dostosowuje się do różnych rozmiarów ekranu.
-
-5. Kontener nawigacji: Organizuje elementy nawigacyjne. Możliwość zmiany układu z pionowego na poziomy na większych ekranach poprawia użyteczność i estetykę.
+**-> Interaktywność: Użycie stanu openNav do kontrolowania widoczności elementów i możliwości przewijania strony zwiększa interakty
 
 */
